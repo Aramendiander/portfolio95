@@ -108,6 +108,13 @@ export default function Desktop(props) {
             </div>
         )
     }
+
+
+
+    const closeWindow = () => {
+        setIsAboutMeOpen(false);
+    };
+
     return (
         <>
             <article id="desktopicons" ref={desktopRef}>
@@ -120,7 +127,7 @@ export default function Desktop(props) {
                 <SingleIcon id="github" icon={github} name={'Github'} onClick={() => setIsGithubOpen(true)} />
             </article>
             {isAboutMeOpen && (
-                <Window>
+                <Window name={'About Me'} onClose={closeWindow}>
                     <AboutMeContent />
                 </Window>
             )}

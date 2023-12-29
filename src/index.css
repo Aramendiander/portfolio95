@@ -504,6 +504,20 @@ body, #root {
   margin-left: 10px;
 }
 
+.titlebar {
+  display:flex;
+  flex-direction: row;;
+}
+
+.titlebarname {
+  width: 100%;
+}
+
+.titlebarbuttons  {
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 
 
 @media (max-height: 650px) {
