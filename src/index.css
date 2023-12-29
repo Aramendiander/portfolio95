@@ -417,10 +417,21 @@ body, #root {
   display:flex;
 }
 
+#desktopicons {
+  display: grid;
+  max-height: 100vh;
+}
+
+
+.singleicon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1rem 1rem;
+}
 
 
 .singleicon div {
-  margin-left: 1rem;
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -436,7 +447,19 @@ body, #root {
 .singleicon p {
   width: 100%;
   text-align: center;
+  padding: 1px;
+  border: 1px solid transparent;
 }
+
+.singleicon .active p {
+  background-color: darkblue;
+  border: 1px dotted white;
+}
+
+.singleicon .active img {
+  mix-blend-mode: multiply;
+}
+
 
 #openedstart {
   position: absolute;
@@ -479,4 +502,18 @@ body, #root {
 
 .baritemname {
   margin-left: 10px;
+}
+
+
+
+@media (max-height: 650px) {
+  #desktopicons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-height: 400px) {
+  #desktopicons {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

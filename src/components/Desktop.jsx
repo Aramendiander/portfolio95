@@ -8,6 +8,7 @@ import github from '../assets/github.png';
 import { useEffect, useState } from 'react';
 
 export default function Desktop() {
+    const [activeIcon, setActiveIcon] = useState('');
     const [activeWindow, setActiveWindow] = useState('');
     const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
     const [isNotepadOpen, setIsNotepadOpen] = useState(false);
@@ -22,22 +23,24 @@ export default function Desktop() {
 
     const SingleIcon = (props) => {
         return (
-            <>
-                <div className="singleicon" onClick={() => handleIconClick(props.id)}>
-                    <div id={props.id}>
+            <div className="singleicon" onClick={() => handleIconClick(props.id)} >
+                <div id={props.id}>
+                    <div className="image-wrapper">
                         <img src={props.icon} className="desktopiconicon" />
-                        <p className="desktopiconname">{props.name}</p>
                     </div>
+                    <p className="desktopiconname">{props.name}</p>
                 </div>
-            </>
+            </div>
         )
     }
-
-
-
-
+    
     const handleIconClick = (item) => {
-        console.log(item)
+        const allIcons = document.querySelectorAll('.singleicon div');
+        for(let i = 0; i < allIcons.length; i++) {
+            allIcons[i].classList.remove('active');
+        }
+        const clickedItem = document.getElementById(item);
+        clickedItem.classList.add('active');
     }
 
     return (
