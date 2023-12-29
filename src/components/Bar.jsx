@@ -1,15 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import linkedin from '../assets/linkedin.png'
 import github from '../assets/github.png'
 import resume from '../assets/resume.png'
 import contact from '../assets/contact.png'
 
 export default function Bar() {
-
     const [activeBar, setActiveBar] = useState(false)
+    const barRef = useRef(null);
 
+    useEffect(() => {
+        document.addEventListener('click', handleClick);
 
-    const handleStartClick = () => {
+        return () => {
+            document.removeEventListener('click', handleClick);
+        };
+    }, []);
+
+    const handleClick = (event) => {
+        if (barRef.current && !barRef.current.contains(event.target)) {
+            setActiveBar(false)
+        }
+    }
+
+    const handleStartClick = (event) => {
+        event.stopPropagation(); // prevent triggering handleClick
         setActiveBar(!activeBar)
     }
 
@@ -26,20 +40,15 @@ export default function Bar() {
 
     return (
         <>
-            <section id="bottombar">
+            <section id="bottombar" ref={barRef}>
                 {activeBar && (
                     <article id="openedstart">
-                        <div className="winlogo"><span>Windows</span> 95</div>
+                        <div className="winlogo"><span>Aramendi</span> 95</div>
                         <div className="baritems">
-                            <BarItem name="About Me" icon={linkedin} />
+                            <BarItem name="LinkedIn" icon={linkedin} />
                             <BarItem name="Github" icon={github} />
                             <BarItem name="Resume" icon={resume} />
                             <BarItem name="Contact" icon={contact} />
-                            {/* <div className="baritem">Linkedin</div>
-                            <div className="baritem">Github</div>
-                            <div className="baritem">Resume</div>
-                            <div className="baritem">Photos</div>
-                            <div className="baritem">Contact</div> */}
                         </div>
                     </article>
                 )}

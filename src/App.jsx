@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react'
-import Bar from './components/Bar'
-import Desktop from './components/Desktop'
+import { useState } from 'react';
+import Desktop from './components/Desktop';
+import Bar from './components/Bar';
 
 function App() {
-  const [activeComponent, setActiveComponent] = useState('')
+  const [activeBar, setActiveBar] = useState(false);
+  
 
   return (
     <>
       <section id="desktop">
-        <Desktop />
+        <Desktop setActiveBar={setActiveBar} />
       </section>
-      <Bar />
+      <Bar activeBar={activeBar} setActiveBar={setActiveBar}  />
     </>
   )
 }

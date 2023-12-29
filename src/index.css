@@ -427,7 +427,7 @@ body, #root {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.1rem 1rem;
+  margin: 0.1rem 1rem;
 }
 
 
