@@ -7,7 +7,7 @@ import linkedin from '../assets/linkedin.png';
 import github from '../assets/github.png';
 import { useEffect, useState, useRef } from 'react';
 
-export default function Desktop() {
+export default function Desktop(props) {
     const [activeIcon, setActiveIcon] = useState('');
     const [activeWindow, setActiveWindow] = useState('');
     const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
@@ -56,13 +56,16 @@ export default function Desktop() {
 
     const handleIconClick = (e, item) => {
         e.stopPropagation();
-
+    
         const allIcons = document.querySelectorAll('.singleicon div');
         for(let i = 0; i < allIcons.length; i++) {
             allIcons[i].classList.remove('active');
         }
         const clickedItem = document.getElementById(item);
         clickedItem.classList.add('active');
+    
+        // Set activeBar to false
+        props.setActiveBar(false);
     };
 
     const SingleIcon = (props) => {
