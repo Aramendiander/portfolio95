@@ -7,6 +7,7 @@ import linkedin from '../assets/linkedin.png';
 import github from '../assets/github.png';
 import { useEffect, useState, useRef } from 'react';
 import AboutMeContent from './AppsContent/AboutMeContent';
+import ContactContent from './AppsContent/ContactContent';
 import Window from './Window';
 import Bar from './Bar';
 
@@ -129,11 +130,12 @@ export default function Desktop(props) {
             <article id="desktopicons" ref={desktopRef}>
                 <SingleIcon id="aboutme" icon={aboutme} name={'About me'} component={AboutMeContent} onClick={() => { }} />
                 <SingleIcon id="notepad" icon={notepad} name={'Notepad'} component={'NotepadContent'} onClick={() => { }} />
-                <SingleIcon id="contact" icon={contact} name={'Contact'} component={'ContactContent'} onClick={() => { }} />
+                <SingleIcon id="contact" icon={contact} name={'Contact'} component={ContactContent} onClick={() => { }} />
                 <SingleIcon id="photos" icon={photos} name={'Photos'} component={'PhotosContent'} onClick={() => { }} />
                 <SingleIcon id="resume" icon={resume} name={'Resume'} component={'ResumeContent'} onClick={() => { }} />
                 <SingleIcon id="linkedin" icon={linkedin} name={'Linkedin'} component={'LinkedinContent'} onClick={() => { }} />
                 <SingleIcon id="github" icon={github} name={'Github'} component={'GithubContent'} onClick={() => { }} />
+                {/* Add encarta */}
             </article>
             {openedApps.map(app => (
                 <Window
@@ -147,7 +149,7 @@ export default function Desktop(props) {
                     <app.component />
                 </Window>
             ))}
-            <Bar openedApps={openedApps} toggleMinimizeApp={toggleMinimizeApp} setActiveBar={setActiveBar} />
+            <Bar openedApps={openedApps} toggleMinimizeApp={toggleMinimizeApp} setActiveBar={setActiveBar} activeBar={activeBar} />
         </>
     )
 }
