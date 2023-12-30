@@ -460,6 +460,10 @@ body, #root {
   mix-blend-mode: multiply;
 }
 
+.minimized {
+  display: none;
+}
+
 
 #openedstart {
   position: absolute;

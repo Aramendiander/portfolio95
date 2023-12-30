@@ -6,28 +6,46 @@ import resume from '../assets/resume.png';
 import linkedin from '../assets/linkedin.png';
 import github from '../assets/github.png';
 import { useEffect, useState, useRef } from 'react';
-import AboutMeContent from './AboutMeContent';
+import AboutMeContent from './AppsContent/AboutMeContent';
 import Window from './Window';
 import Bar from './Bar';
 
 export default function Desktop(props) {
     const [activeIcon, setActiveIcon] = useState('');
     const [activeWindow, setActiveWindow] = useState('');
-    const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
-    const [isNotepadOpen, setIsNotepadOpen] = useState(false);
-    const [isContactOpen, setIsContactOpen] = useState(false);
-    const [isPhotosOpen, setIsPhotosOpen] = useState(false);
-    const [isResumeOpen, setIsResumeOpen] = useState(false);
-    const [isLinkedinOpen, setIsLinkedinOpen] = useState(false);
-    const [isGithubOpen, setIsGithubOpen] = useState(false);
     const [activeBar, setActiveBar] = useState(false);
     const [openedApps, setOpenedApps] = useState([]);
     const desktopRef = useRef(null);
 
     let zindex = 1;
 
-    const openApp = (app) => { // Add this function
-        setOpenedApps([...openedApps, app]);
+    const openApp = (app) => {
+        const timestamp = Date.now();
+        setOpenedApps(prevApps => [...prevApps, { ...app, id: timestamp }]);
+    }
+
+    const closeApp = (appId) => {
+        setOpenedApps(prevApps => prevApps.filter(app => app.id !== appId));
+    }
+
+    const minimizeApp = (appId) => {
+        setOpenedApps(prevApps => prevApps.map(app =>
+            app.id === appId ? { ...app, minimized: true } : app
+        ));
+    }
+
+    const toggleMinimizeApp = (appId) => {
+        setOpenedApps(prevApps => prevApps.map(app => 
+            app.id === appId ? { ...app, minimized: !app.minimized } : app
+        ));
+    }
+
+    const maximizeApp = (appId) => {
+        console.log(appId)
+        const minimizedApp = openedApps.find(app => app.id === appId);
+        console.log(minimizedApp)
+        console.log('minimizedApp')
+
     }
 
 
@@ -64,6 +82,9 @@ export default function Desktop(props) {
     }, []);
 
 
+
+
+
     const handleIconClick = (e, item) => {
         e.stopPropagation();
 
@@ -83,9 +104,10 @@ export default function Desktop(props) {
             handleIconClick(e, props.id);
             if (props.onClick) {
                 props.onClick();
-                openApp({ name: props.name, icon: props.icon });
+                openApp({ name: props.name, icon: props.icon, component: props.component });
             }
         };
+
 
 
         return (
@@ -98,50 +120,34 @@ export default function Desktop(props) {
         );
     };
 
-    const AboutMe = () => {
-        return (
-            <div className="window" id="aboutme" style={{ zIndex: zindex++ }}>
-                <div className="windowheader">
-                    <div className="windowheadericon">
-                        <img src={aboutme} className="windowheadericonicon" />
-                    </div>
-                    <p className="windowheadertext">About me</p>
-                    <div className="windowheaderbuttons">
-                        <div className="windowheaderbutton"></div>
-                        <div className="windowheaderbutton"></div>
-                        <div className="windowheaderbutton"></div>
-                    </div>
-                </div>
-                <div className="windowcontent">
-                    <p className="windowcontenttext">I'm a full stack developer with a background in design. I'm currently </p>
-                </div>
-            </div>
-        )
-    }
 
 
 
-    const closeWindow = () => {
-        setIsAboutMeOpen(false);
-    };
 
     return (
         <>
             <article id="desktopicons" ref={desktopRef}>
-                <SingleIcon id="aboutme" icon={aboutme} name={'About me'} onClick={() => setIsAboutMeOpen(true)} />
-                <SingleIcon id="notepad" icon={notepad} name={'Notepad'} onClick={() => setIsNotepadOpen(true)} />
-                <SingleIcon id="contact" icon={contact} name={'Contact'} onClick={() => setIsContactOpen(true)} />
-                <SingleIcon id="photos" icon={photos} name={'Photos'} onClick={() => setIsPhotosOpen(true)} />
-                <SingleIcon id="resume" icon={resume} name={'Resume'} onClick={() => setIsResumeOpen(true)} />
-                <SingleIcon id="linkedin" icon={linkedin} name={'Linkedin'} onClick={() => setIsLinkedinOpen(true)} />
-                <SingleIcon id="github" icon={github} name={'Github'} onClick={() => setIsGithubOpen(true)} />
+                <SingleIcon id="aboutme" icon={aboutme} name={'About me'} component={AboutMeContent} onClick={() => { }} />
+                <SingleIcon id="notepad" icon={notepad} name={'Notepad'} component={'NotepadContent'} onClick={() => { }} />
+                <SingleIcon id="contact" icon={contact} name={'Contact'} component={'ContactContent'} onClick={() => { }} />
+                <SingleIcon id="photos" icon={photos} name={'Photos'} component={'PhotosContent'} onClick={() => { }} />
+                <SingleIcon id="resume" icon={resume} name={'Resume'} component={'ResumeContent'} onClick={() => { }} />
+                <SingleIcon id="linkedin" icon={linkedin} name={'Linkedin'} component={'LinkedinContent'} onClick={() => { }} />
+                <SingleIcon id="github" icon={github} name={'Github'} component={'GithubContent'} onClick={() => { }} />
             </article>
-            {isAboutMeOpen && (
-                <Window name={'About Me'} onClose={closeWindow}>
-                    <AboutMeContent />
+            {openedApps.map(app => (
+                <Window
+                    key={app.id}
+                    name={app.name}
+                    className={app.minimized ? 'minimized' : ''}
+                    onClose={() => closeApp(app.id)}
+                    onMinimize={() => minimizeApp(app.id)}
+                    onMaximize={() => maximizeApp(app.id)}
+                >
+                    <app.component />
                 </Window>
-            )}
-            <Bar openedApps={openedApps} activeBar={activeBar} setActiveBar={setActiveBar}  />
+            ))}
+            <Bar openedApps={openedApps} toggleMinimizeApp={toggleMinimizeApp} setActiveBar={setActiveBar} />
         </>
     )
 }

@@ -53,10 +53,10 @@ export default function Bar(props) {
                 <div className="separator"></div>
                 <div className="baricons">
                     {props.openedApps.map((app) => (
-                        <div className="baricon" key={app.name}>
-                            <img src={app.icon} className="bariconicon" />
-                            <p className="bariconname">{app.name}</p>
-                        </div>
+                        <div className="baricon" key={app.id} onClick={() => props.toggleMinimizeApp(app.id)}>
+                        <img src={app.icon} className="bariconicon" />
+                        <p className="bariconname">{app.name}</p>
+                    </div>
                     ))}
                 </div>
             </article>

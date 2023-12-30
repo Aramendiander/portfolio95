@@ -1,14 +1,13 @@
-export default function Window({ children, ...props }) {
-    console.log(children)
+export default function Window({ children, className, ...props }) {
     return (
-        <div className="window">
+        <div className={`window ${className}`}>
             <div className="titlebar">
                 <div className="titlebarname">
                     <span>{props.name}</span>
                 </div>
                 <div className="titlebarbuttons">
-                    <div className="titlebarbutton minimize">Min</div>
-                    <div className="titlebarbutton maximize">Max</div>
+                    <div className="titlebarbutton minimize" onClick={props.onMinimize}>Min</div>
+                    <div className="titlebarbutton maximize" onClick={props.onMaximize}>Max</div>
                     <div className="titlebarbutton close" onClick={props.onClose}>X</div>
                 </div>
             </div>
