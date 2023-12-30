@@ -11,7 +11,7 @@ function App() {
       <section id="desktop">
       <Desktop setActiveBar={setActiveBar} />
       </section>
-      <Bar activeBar={activeBar} setActiveBar={setActiveBar} />
+     {/*  <Bar activeBar={activeBar} setActiveBar={setActiveBar} /> */}
     </>
   )
 }

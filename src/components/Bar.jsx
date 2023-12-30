@@ -22,7 +22,7 @@ export default function Bar(props) {
     }
 
     const handleStartClick = (event) => {
-        event.stopPropagation(); // prevent triggering handleClick
+        event.stopPropagation();
         props.setActiveBar(!props.activeBar)
     }
 
@@ -51,6 +51,14 @@ export default function Bar(props) {
             <article id="bar">
                 <div id="start" onClick={handleStartClick}></div>
                 <div className="separator"></div>
+                <div className="baricons">
+                    {props.openedApps.map((app) => (
+                        <div className="baricon" key={app.name}>
+                            <img src={app.icon} className="bariconicon" />
+                            <p className="bariconname">{app.name}</p>
+                        </div>
+                    ))}
+                </div>
             </article>
         </section>
     )

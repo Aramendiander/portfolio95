@@ -8,6 +8,7 @@ import github from '../assets/github.png';
 import { useEffect, useState, useRef } from 'react';
 import AboutMeContent from './AboutMeContent';
 import Window from './Window';
+import Bar from './Bar';
 
 export default function Desktop(props) {
     const [activeIcon, setActiveIcon] = useState('');
@@ -19,9 +20,16 @@ export default function Desktop(props) {
     const [isResumeOpen, setIsResumeOpen] = useState(false);
     const [isLinkedinOpen, setIsLinkedinOpen] = useState(false);
     const [isGithubOpen, setIsGithubOpen] = useState(false);
+    const [activeBar, setActiveBar] = useState(false);
+    const [openedApps, setOpenedApps] = useState([]);
     const desktopRef = useRef(null);
 
     let zindex = 1;
+
+    const openApp = (app) => { // Add this function
+        setOpenedApps([...openedApps, app]);
+    }
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -75,8 +83,10 @@ export default function Desktop(props) {
             handleIconClick(e, props.id);
             if (props.onClick) {
                 props.onClick();
+                openApp({ name: props.name, icon: props.icon });
             }
         };
+
 
         return (
             <div className="singleicon" onClick={handleClick}>
@@ -131,6 +141,7 @@ export default function Desktop(props) {
                     <AboutMeContent />
                 </Window>
             )}
+            <Bar openedApps={openedApps} activeBar={activeBar} setActiveBar={setActiveBar}  />
         </>
     )
 }

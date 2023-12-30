@@ -464,10 +464,28 @@ body, #root {
 #openedstart {
   position: absolute;
   bottom: calc(0dvh + 2.5rem);
+  left: 0;
   background-color: #C0C0C0;
   height: 40dvh;
   width: 15dvw;
   display:flex;
+}
+
+.baricons {
+  display:flex;
+}
+
+.baricon {
+  display:flex;
+  align-items: center;
+}
+
+.baricon img {
+  height: 60%;
+}
+
+.bariconname {
+  margin-left: 0.2rem;
 }
 
 .winlogo {
@@ -506,7 +524,9 @@ body, #root {
 
 .titlebar {
   display:flex;
-  flex-direction: row;;
+  flex-direction: row;
+  background-color: darkblue;
+  padding: 3px;
 }
 
 .titlebarname {
@@ -517,6 +537,10 @@ body, #root {
   display:flex;
   flex-direction: row;
   justify-content: flex-end;
+}
+
+.titlebarbuttons div:not(:last-child) {
+  margin-right: 5px;
 }
 
 
