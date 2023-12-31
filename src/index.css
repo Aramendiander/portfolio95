@@ -557,11 +557,14 @@ body, #root {
 }
 
 .aboutme {
-  display:flex;
+  display: flex;
   flex-direction: column;
   width: 50%;
   height: 70dvh;
+}
 
+.minimized {
+  display: none !important;
 }
 
 

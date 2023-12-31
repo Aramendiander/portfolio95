@@ -18,6 +18,8 @@ export default function Desktop(props) {
 
     let zindex = 1;
 
+    console.log(openedApps)
+
     const openApp = (app) => {
         const timestamp = Date.now();
         setOpenedApps(prevApps => [...prevApps, { ...app, id: timestamp }]);
@@ -28,6 +30,7 @@ export default function Desktop(props) {
     }
 
     const minimizeApp = (appId) => {
+        console.log('hola')
         setOpenedApps(prevApps => prevApps.map(app =>
             app.id === appId ? { ...app, minimized: true } : app
         ));
@@ -40,10 +43,7 @@ export default function Desktop(props) {
     }
 
     const maximizeApp = (appId) => {
-        console.log(appId)
-        const minimizedApp = openedApps.find(app => app.id === appId);
-        console.log(minimizedApp)
-        console.log('minimizedApp')
+      
 
     }
 
@@ -121,10 +121,10 @@ export default function Desktop(props) {
 
 
 
-
     return (
         <>
             <article id="desktopicons" ref={desktopRef}>
+
                 <SingleIcon id="aboutme" icon={aboutme} uniqueClass={'aboutme'} name={'About me'} component={AboutMeContent} onClick={() => { }} />
                 <SingleIcon id="notepad" icon={notepad} uniqueClass={'notepad'} name={'Notepad'} component={'NotepadContent'} onClick={() => { }} />
                 <SingleIcon id="contact" icon={contact} uniqueClass={'contact'} name={'Contact'} component={ContactContent} onClick={() => { }} />

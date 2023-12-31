@@ -1,6 +1,6 @@
 import aboutme from '../../assets/aboutme.jpeg'
 
-export default function AboutMeContent() {
+export default function AboutMeContent(props) {
 
     return (
         <article className="aboutmecontainer">
