@@ -358,6 +358,11 @@ body, #root {
   background-color: #018181;
 }
 
+@font-face {
+  font-family: 'w95fa';
+  src: url('./assets/fonts/w95fa.woff') format('woff');
+}
+
 #bar {
   display:flex;
   position:absolute;
@@ -545,6 +550,52 @@ body, #root {
 
 .titlebarbuttons div:not(:last-child) {
   margin-right: 5px;
+}
+
+.window .content {
+  background-color: #B7B7B7;
+}
+
+.aboutme {
+  display:flex;
+  flex-direction: column;
+  width: 50%;
+  height: 70dvh;
+
+}
+
+.content {
+  overflow:auto;
+}
+
+.presentation {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width:100%;
+}
+
+.halfleft {
+  width: 50%;
+}
+
+.halfright {
+  width: 50%;
+}
+
+.content {
+  font-family: w95fa;
+  color: black;
+}
+
+.content p {
+  font-size: 1.5rem;
+}
+
+.aboutmepic {
+  max-width: 100%;
+  object-fit: contain;
 }
 
 

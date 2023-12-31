@@ -12,8 +12,6 @@ import Window from './Window';
 import Bar from './Bar';
 
 export default function Desktop(props) {
-    const [activeIcon, setActiveIcon] = useState('');
-    const [activeWindow, setActiveWindow] = useState('');
     const [activeBar, setActiveBar] = useState(false);
     const [openedApps, setOpenedApps] = useState([]);
     const desktopRef = useRef(null);
@@ -96,7 +94,6 @@ export default function Desktop(props) {
         const clickedItem = document.getElementById(item);
         clickedItem.classList.add('active');
 
-        // Close the bar when an icon is clicked
         props.setActiveBar(false);
     };
 
@@ -105,7 +102,7 @@ export default function Desktop(props) {
             handleIconClick(e, props.id);
             if (props.onClick) {
                 props.onClick();
-                openApp({ name: props.name, icon: props.icon, component: props.component });
+                openApp({ uniqueClass: props.uniqueClass, name: props.name, icon: props.icon, component: props.component });
             }
         };
 
@@ -128,13 +125,13 @@ export default function Desktop(props) {
     return (
         <>
             <article id="desktopicons" ref={desktopRef}>
-                <SingleIcon id="aboutme" icon={aboutme} name={'About me'} component={AboutMeContent} onClick={() => { }} />
-                <SingleIcon id="notepad" icon={notepad} name={'Notepad'} component={'NotepadContent'} onClick={() => { }} />
-                <SingleIcon id="contact" icon={contact} name={'Contact'} component={ContactContent} onClick={() => { }} />
-                <SingleIcon id="photos" icon={photos} name={'Photos'} component={'PhotosContent'} onClick={() => { }} />
-                <SingleIcon id="resume" icon={resume} name={'Resume'} component={'ResumeContent'} onClick={() => { }} />
-                <SingleIcon id="linkedin" icon={linkedin} name={'Linkedin'} component={'LinkedinContent'} onClick={() => { }} />
-                <SingleIcon id="github" icon={github} name={'Github'} component={'GithubContent'} onClick={() => { }} />
+                <SingleIcon id="aboutme" icon={aboutme} uniqueClass={'aboutme'} name={'About me'} component={AboutMeContent} onClick={() => { }} />
+                <SingleIcon id="notepad" icon={notepad} uniqueClass={'notepad'} name={'Notepad'} component={'NotepadContent'} onClick={() => { }} />
+                <SingleIcon id="contact" icon={contact} uniqueClass={'contact'} name={'Contact'} component={ContactContent} onClick={() => { }} />
+                <SingleIcon id="photos" icon={photos} uniqueClass={'photos'} name={'Photos'} component={'PhotosContent'} onClick={() => { }} />
+                <SingleIcon id="resume" icon={resume} uniqueClass={'resume'} name={'Resume'} component={'ResumeContent'} onClick={() => { }} />
+                <SingleIcon id="linkedin" icon={linkedin} uniqueClass={'linkedin'} name={'Linkedin'} component={'LinkedinContent'} onClick={() => { }} />
+                <SingleIcon id="github" icon={github} uniqueClass={'github'} name={'Github'} component={'GithubContent'} onClick={() => { }} />
                 {/* Add encarta */}
             </article>
             {openedApps.map(app => (
@@ -142,6 +139,7 @@ export default function Desktop(props) {
                     key={app.id}
                     name={app.name}
                     className={app.minimized ? 'minimized' : ''}
+                    uniqueClass={app.uniqueClass}
                     onClose={() => closeApp(app.id)}
                     onMinimize={() => minimizeApp(app.id)}
                     onMaximize={() => maximizeApp(app.id)}
