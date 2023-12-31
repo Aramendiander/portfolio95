@@ -564,8 +564,15 @@ body, #root {
 
 }
 
+
+
 .content {
   overflow:auto;
+}
+
+textarea {
+  resize: none;
+  height: 100%;
 }
 
 .presentation {
@@ -597,6 +604,50 @@ body, #root {
   max-width: 100%;
   object-fit: contain;
 }
+
+.contactcontent form {
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.formfield textarea {
+  height: 50dvh;
+}
+
+.contact {
+  width: 50dvw;
+}
+
+.formfield {
+  width: 100%;
+  display:flex;
+}
+
+.formfield label  {
+  width: 3rem;
+  font-size: 0.7rem;
+  padding: 5px;
+}
+
+
+
+.formfield input {
+  height: 2rem;
+  font-size: 1rem;
+}
+
+.formfield input, .formfield textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #818181;
+}
+
+form > * {
+    margin-top: 0.6rem;
+}
+
 
 
 @media (max-height: 650px) {

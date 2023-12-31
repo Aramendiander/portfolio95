@@ -1,15 +1,20 @@
-
-
 export default function ContactContent(props) {
-
     return (
         <article id="contactcontent">
-            <div className="contactcontenttitle">
-                <h1>About Me</h1>
-            </div>
-            <div className="contactcontenttext">
-                <p>aramendiander@gmail.com</p>
-            </div>
+            <form>
+                <button>Send</button>
+                <div className="formfield">
+                    <label htmlFor="to">To:</label>
+                    <input type="text" name="to" readOnly value="Ander" />
+                </div>
+                <div className="formfield">
+                    <label htmlFor="subject">Subject:</label>
+                    <input type="text" name="subject" />
+                </div>
+                <div className="formfield">
+                    <textarea name="message" cols="30" rows="10"></textarea>
+                </div>
+            </form>
         </article>
     )
 }
