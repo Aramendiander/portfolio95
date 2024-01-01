@@ -33,7 +33,6 @@ export default function Desktop(props) {
     }
 
     const minimizeApp = (appId) => {
-        console.log('hola')
         setOpenedApps(prevApps => prevApps.map(app =>
             app.id === appId ? { ...app, minimized: true } : app
         ));
@@ -46,9 +45,18 @@ export default function Desktop(props) {
     }
 
     const maximizeApp = (appId) => {
-
-
+        setOpenedApps(prevApps => prevApps.map(app =>
+            app.id === appId ? { ...app, maximized: true } : app
+        ));
     }
+
+    const toggleMaximizeApp = (appId) => {
+        setOpenedApps(prevApps => prevApps.map(app =>
+            app.id === appId ? { ...app, maximized: !app.maximized } : app
+        ));
+    }
+
+  
 
 
     useEffect(() => {
@@ -152,11 +160,12 @@ export default function Desktop(props) {
                 <Window
                     key={app.id}
                     name={app.name}
-                    className={app.minimized ? 'minimized' : ''}
+                    icon={app.icon}
+                    className={`${app.minimized ? 'minimized' : ''} ${app.maximized ? 'maximized' : ''}`}
                     uniqueClass={app.uniqueClass}
                     onClose={() => closeApp(app.id)}
                     onMinimize={() => minimizeApp(app.id)}
-                    onMaximize={() => maximizeApp(app.id)}
+                    onMaximize={() => toggleMaximizeApp(app.id)}
                 >
                     <app.component.Component closeApp={app.closeApp} />
                 </Window>

@@ -10,7 +10,7 @@ export default function Window({ children, className, uniqueClass, ...props }) {
 
             <div className="title-bar">
                 <div className="title-bar-text">
-                    <span>{props.name}</span>
+                    <span><img src={props.icon} alt="" /></span><span>{props.name}</span>
                 </div>
                 <div className="title-bar-controls">
                     <button aria-label="Minimize" className="titlebarbutton minimize" onClick={props.onMinimize}></button>

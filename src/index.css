@@ -385,8 +385,14 @@ template {
   display: none;
 }
 
+@font-face {
+  font-family: 'w95fa';
+  src: url('./assets/fonts/w95fa.woff') format('woff');
+}
+
 body,
 #root {
+  font-family: w95fa;
   height: 100dvh;
   max-height: 100dvh;
   width: 100vw;
@@ -395,10 +401,7 @@ body,
   overflow: hidden;
 }
 
-@font-face {
-  font-family: 'w95fa';
-  src: url('./assets/fonts/w95fa.woff') format('woff');
-}
+
 
 #bar {
   display: flex;
@@ -624,6 +627,13 @@ body,
 
 .title-bar-text {
   width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.title-bar-text img {
+  width: 11px;
+  margin-right: 5px;
 }
 
 .titlebarbuttons {
@@ -657,10 +667,24 @@ body,
   display: none !important;
 }
 
+.maximized {
+  width: 100dvw !important;
+  height: calc(100dvh - 2.5rem)  !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+
 .window.contact {
   position: absolute;
   left: 25%;
   top: 10%;
+}
+
+.thankyou {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .window.aboutme {
@@ -731,14 +755,21 @@ textarea {
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  max-height: 472px;
+  align-items: center;
+  justify-content: center;
 }
 
-.halfleft {
+/* .halfleft {
   width: 50%;
 }
 
 .halfright {
   width: 50%;
+} */
+
+.rest {
+  padding-left: 1rem;
 }
 
 .content {
@@ -750,8 +781,14 @@ textarea {
   font-size: 1.5rem;
 }
 
+.aboutmecontent {
+  padding-left: 1rem;
+  
+}
+
 .aboutmepic {
   max-width: 100%;
+  max-height: 472px;
   object-fit: contain;
 }
 

@@ -61,9 +61,6 @@ export default function Bar(props) {
         );
     };
 
-    const handleBarClick = (name) => {
-        console.log(name)
-    }
 
     return (
         <section id="bottombar" ref={barRef}>
