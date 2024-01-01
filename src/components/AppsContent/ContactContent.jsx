@@ -1,4 +1,7 @@
 export default function ContactContent(props) {
+
+// TODO Check why the viewport increases when the app is opened
+
     return (
         <article id="contactcontent">
             <form>

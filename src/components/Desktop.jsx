@@ -10,6 +10,7 @@ import AboutMeContent from './AppsContent/AboutMeContent';
 import ContactContent from './AppsContent/ContactContent';
 import Window from './Window';
 import Bar from './Bar';
+import NotepadContent from './AppsContent/NotepadContent';
 
 export default function Desktop(props) {
     const [activeBar, setActiveBar] = useState(false);
@@ -18,7 +19,6 @@ export default function Desktop(props) {
 
     let zindex = 1;
 
-    console.log(openedApps)
 
     const openApp = (app) => {
         const timestamp = Date.now();
@@ -126,7 +126,7 @@ export default function Desktop(props) {
             <article id="desktopicons" ref={desktopRef}>
 
                 <SingleIcon id="aboutme" icon={aboutme} uniqueClass={'aboutme'} name={'About me'} component={AboutMeContent} onClick={() => { }} />
-                <SingleIcon id="notepad" icon={notepad} uniqueClass={'notepad'} name={'Notepad'} component={'NotepadContent'} onClick={() => { }} />
+                <SingleIcon id="notepad" icon={notepad} uniqueClass={'notepad'} name={'Notepad'} component={NotepadContent} onClick={() => { }} />
                 <SingleIcon id="contact" icon={contact} uniqueClass={'contact'} name={'Contact'} component={ContactContent} onClick={() => { }} />
                 <SingleIcon id="photos" icon={photos} uniqueClass={'photos'} name={'Photos'} component={'PhotosContent'} onClick={() => { }} />
                 <SingleIcon id="resume" icon={resume} uniqueClass={'resume'} name={'Resume'} component={'ResumeContent'} onClick={() => { }} />

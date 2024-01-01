@@ -353,8 +353,10 @@ template {
 }
 
 body, #root {
-  height: 100dvh;
-  width: 100dvw;
+  height: 100%;
+  max-height: 100%;
+  width: 100vw;
+  max-width: 100vw;
   background-color: #018181;
 }
 
@@ -424,7 +426,6 @@ body, #root {
 
 #desktopicons {
   display: grid;
-  max-height: 100vh;
 }
 
 
@@ -482,11 +483,16 @@ body, #root {
 
 .baricons {
   display:flex;
+  max-height: 100%;
 }
 
 .baricon {
   display:flex;
   align-items: center;
+}
+
+.baricon:not(:first-child) {
+  margin-left: 1rem;
 }
 
 .baricon img {
@@ -556,6 +562,7 @@ body, #root {
   background-color: #B7B7B7;
 }
 
+
 .aboutme {
   display: flex;
   flex-direction: column;
@@ -567,6 +574,32 @@ body, #root {
   display: none !important;
 }
 
+.window.contact {
+  position: absolute;
+  left: 25%;
+  top: 10%;
+}
+
+.window.aboutme {
+  position: absolute;
+  left: 10%;
+  top: 5%;
+}
+
+.window.notepad {
+  position: absolute;
+  left: 30%;
+  top: 15%;
+  width: 30dvw;
+  height: 50dvh;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
 
 
 .content {
@@ -576,6 +609,7 @@ body, #root {
 textarea {
   resize: none;
   height: 100%;
+  font-size: 1rem;
 }
 
 .presentation {
@@ -651,7 +685,29 @@ form > * {
     margin-top: 0.6rem;
 }
 
+.notepad .content {
+  height: calc(100% - 1.3rem);
+}
 
+#notepadcontent {
+  width: 100%;
+  height:100%;
+  display: flex;
+  box-sizing: border-box;
+  
+}
+
+.notepadcontent textarea {
+  width: 100%;
+}
+
+#notepad {
+  flex-grow: 1;
+  width: 100%;
+  font-family: Arial;
+  box-sizing: border-box;
+  height: 100%;
+}
 
 @media (max-height: 650px) {
   #desktopicons {
