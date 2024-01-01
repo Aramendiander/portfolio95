@@ -161,7 +161,7 @@ export default function Desktop(props) {
                     <app.component.Component closeApp={app.closeApp} />
                 </Window>
             ))}
-            <Bar openedApps={openedApps} toggleMinimizeApp={toggleMinimizeApp} setActiveBar={setActiveBar} activeBar={activeBar} />
+            <Bar openedApps={openedApps} toggleMinimizeApp={toggleMinimizeApp} setActiveBar={setActiveBar} activeBar={activeBar} openApp={openApp} />
         </>
     )
 }

@@ -3,6 +3,10 @@ import linkedin from '../assets/linkedin.png'
 import github from '../assets/github.png'
 import resume from '../assets/resume.png'
 import contact from '../assets/contact.png'
+import ExternalWindowLinkedin from './AppsContent/ExternalWindowLinkedin';
+import ExternalWindowGithub from './AppsContent/ExternalWindowGithub';
+import ExternalWindowResume from './AppsContent/ExternalWindowResume';
+import ContactContent from './AppsContent/ContactContent';
 
 export default function Bar(props) {
     const barRef = useRef(null);
@@ -27,12 +31,26 @@ export default function Bar(props) {
     }
 
     const BarItem = (props) => {
+        const handleClick = () => {
+            const app = {
+                name: props.name,
+                component: { Component: props.component },
+                icon: props.icon,
+                uniqueClass: props.uniqueClass
+            };
+            props.openApp(app);
+        };
+
         return (
-            <div className="baritem">
+            <div className="baritem" onClick={handleClick}>
                 <img src={props.icon} className="baritemicon" />
                 <p className="baritemname">{props.name}</p>
             </div>
-        )
+        );
+    };
+
+    const handleBarClick = (name) => {
+        console.log(name)
     }
 
     return (
@@ -41,10 +59,10 @@ export default function Bar(props) {
                 <article id="openedstart">
                     <div className="winlogo"><span>Aramendi</span> 95</div>
                     <div className="baritems">
-                        <BarItem name="LinkedIn" icon={linkedin} />
-                        <BarItem name="Github" icon={github} />
-                        <BarItem name="Resume" icon={resume} />
-                        <BarItem name="Contact" icon={contact} />
+                        <BarItem id="LinkedIn" icon={linkedin} uniqueClass={'linkedin'} name={'Linkedin'} component={ExternalWindowLinkedin} openApp={props.openApp} />
+                        <BarItem id="github" icon={github} uniqueClass={'github'} name={'Github'} component={ExternalWindowGithub} openApp={props.openApp} />
+                        <BarItem id="resume" icon={resume} uniqueClass={'resume'} name={'Resume'} component={ExternalWindowResume} openApp={props.openApp} />
+                        <BarItem id="contact" icon={contact} uniqueClass={'contact'} name={'Contact'} component={ContactContent} openApp={props.openApp} />
                     </div>
                 </article>
             )}
@@ -54,9 +72,9 @@ export default function Bar(props) {
                 <div className="baricons">
                     {props.openedApps.map((app) => (
                         <div className="baricon" key={app.id} onClick={() => props.toggleMinimizeApp(app.id)}>
-                        <img src={app.icon} className="bariconicon" />
-                        <p className="bariconname">{app.name}</p>
-                    </div>
+                            <img src={app.icon} className="bariconicon" />
+                            <p className="bariconname">{app.name}</p>
+                        </div>
                     ))}
                 </div>
             </article>
