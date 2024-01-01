@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import linkedin from '../assets/linkedin.png'
 import github from '../assets/github.png'
 import resume from '../assets/resume.png'
@@ -10,6 +10,18 @@ import ContactContent from './AppsContent/ContactContent';
 
 export default function Bar(props) {
     const barRef = useRef(null);
+
+    const [time, setTime] = useState(new Date());
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime(new Date());
+        }, 60000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
 
     useEffect(() => {
         document.addEventListener('click', handleClick);
@@ -71,11 +83,14 @@ export default function Bar(props) {
                 <div className="separator"></div>
                 <div className="baricons">
                     {props.openedApps.map((app) => (
-                        <div className="baricon" key={app.id} onClick={() => props.toggleMinimizeApp(app.id)}>
+                        <button className="baricon" key={app.id} onClick={() => props.toggleMinimizeApp(app.id)}>
                             <img src={app.icon} className="bariconicon" />
                             <p className="bariconname">{app.name}</p>
-                        </div>
+                        </button>
                     ))}
+                </div>
+                <div className="datecontainer">
+                    <div className='date'>{`${time.getHours()}:${time.getMinutes() < 10 ? '0' : ''}${time.getMinutes()}`}</div>
                 </div>
             </article>
         </section>

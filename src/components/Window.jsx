@@ -2,10 +2,12 @@ import Draggable from "react-draggable"
 
 export default function Window({ children, className, uniqueClass, ...props }) {
     return (
-        <Draggable>
+        <Draggable handle=".title-bar-text">
 
        
         <div className={`window ${className} ${uniqueClass}`}>
+
+
             <div className="title-bar">
                 <div className="title-bar-text">
                     <span>{props.name}</span>
@@ -16,6 +18,8 @@ export default function Window({ children, className, uniqueClass, ...props }) {
                     <button aria-label="Close" className="titlebarbutton close" onClick={props.onClose}></button>
                 </div>
             </div>
+
+            
             <div className="content">
                 {children}
             </div>
