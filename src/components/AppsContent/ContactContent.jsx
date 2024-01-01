@@ -3,12 +3,23 @@ import React, { useState } from 'react';
 export default function ContactContent(props) {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Here you would handle the form submission, e.g. sending the email
-
-        // After the form is submitted, set isSubmitted to true
         setIsSubmitted(true);
+    
+        const formData = new FormData(event.target);
+    
+        const response = await fetch('Admin forgot to change the URL', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+    
+        if (response.status !== 200) {
+            console.error('Form submission error', response);
+        }
     };
 
     if (isSubmitted) {
@@ -26,7 +37,7 @@ export default function ContactContent(props) {
 
     return (
         <article id="contactcontent">
-            <form action="'Admin forgot to replace the url'" method="POST" onSubmit={handleSubmit}>
+            <form action="Admin forgot to change the URL" method="POST" onSubmit={handleSubmit}>
                 <button type="submit">Send</button>
                 <div className="formfield">
                     <label htmlFor="to">From:</label>
