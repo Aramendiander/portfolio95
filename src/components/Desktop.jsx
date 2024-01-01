@@ -98,18 +98,30 @@ export default function Desktop(props) {
     };
 
     const SingleIcon = (props) => {
+        let timer = 0;
+        let delay = 200;
+        let prevent = false;
+    
         const handleClick = (e) => {
-            handleIconClick(e, props.id);
+            timer = setTimeout(() => {
+                if (!prevent) {
+                    handleIconClick(e, props.id);
+                }
+                prevent = false;
+            }, 0);
+        };
+    
+        const handleDoubleClick = (e) => {
+            clearTimeout(timer);
+            prevent = true;
             if (props.onClick) {
                 props.onClick();
                 openApp({ uniqueClass: props.uniqueClass, name: props.name, icon: props.icon, component: props.component });
             }
         };
-
-
-
+    
         return (
-            <div className="singleicon" onClick={handleClick}>
+            <div className="singleicon" onClick={handleClick} onDoubleClick={handleDoubleClick}>
                 <div id={props.id}>
                     <img src={props.icon} className="desktopiconicon" />
                     <p className="desktopiconname">{props.name}</p>
