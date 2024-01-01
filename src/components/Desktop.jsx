@@ -3,7 +3,7 @@ import notepad from '../assets/notepad.png';
 import contact from '../assets/contact.png';
 import photos from '../assets/photos.png';
 import resume from '../assets/resume.png';
-import linkedin from '../assets/linkedin.png';
+import linkedinIcon from '../assets/linkedin.png';
 import github from '../assets/github.png';
 import { useEffect, useState, useRef } from 'react';
 import AboutMeContent from './AppsContent/AboutMeContent';
@@ -11,7 +11,9 @@ import ContactContent from './AppsContent/ContactContent';
 import Window from './Window';
 import Bar from './Bar';
 import NotepadContent from './AppsContent/NotepadContent';
-import ExternalWindowLinkedin from './ExternalWindowLinkedin';
+import ExternalWindowLinkedin from './AppsContent/ExternalWindowLinkedin';
+import ExternalWindowGithub from './AppsContent/ExternalWindowGithub';
+import ExternalWindowResume from './AppsContent/ExternalWindowResume';
 
 export default function Desktop(props) {
     const [activeBar, setActiveBar] = useState(false);
@@ -23,7 +25,7 @@ export default function Desktop(props) {
 
     const openApp = (app) => {
         const timestamp = Date.now();
-        setOpenedApps(prevApps => [...prevApps, { ...app, id: timestamp }]);
+        setOpenedApps(prevApps => [...prevApps, { ...app, id: timestamp, closeApp: () => closeApp(timestamp) }]);
     }
 
     const closeApp = (appId) => {
@@ -38,13 +40,13 @@ export default function Desktop(props) {
     }
 
     const toggleMinimizeApp = (appId) => {
-        setOpenedApps(prevApps => prevApps.map(app => 
+        setOpenedApps(prevApps => prevApps.map(app =>
             app.id === appId ? { ...app, minimized: !app.minimized } : app
         ));
     }
 
     const maximizeApp = (appId) => {
-      
+
 
     }
 
@@ -101,7 +103,7 @@ export default function Desktop(props) {
     const SingleIcon = (props) => {
         let timer = 0;
         let prevent = false;
-    
+
         const handleClick = (e) => {
             timer = setTimeout(() => {
                 if (!prevent) {
@@ -110,16 +112,16 @@ export default function Desktop(props) {
                 prevent = false;
             }, 0);
         };
-    
+
         const handleDoubleClick = (e) => {
             clearTimeout(timer);
             prevent = true;
             if (props.onClick) {
                 props.onClick();
-                openApp({ uniqueClass: props.uniqueClass, name: props.name, icon: props.icon, component: props.component });
+                openApp({ uniqueClass: props.uniqueClass, name: props.name, icon: props.icon, component: { Component: props.component } });
             }
         };
-    
+
         return (
             <div className="singleicon" onClick={handleClick} onDoubleClick={handleDoubleClick}>
                 <div id={props.id}>
@@ -140,10 +142,10 @@ export default function Desktop(props) {
                 <SingleIcon id="aboutme" icon={aboutme} uniqueClass={'aboutme'} name={'About me'} component={AboutMeContent} onClick={() => { }} />
                 <SingleIcon id="notepad" icon={notepad} uniqueClass={'notepad'} name={'Notepad'} component={NotepadContent} onClick={() => { }} />
                 <SingleIcon id="contact" icon={contact} uniqueClass={'contact'} name={'Contact'} component={ContactContent} onClick={() => { }} />
-                <SingleIcon id="photos" icon={photos} uniqueClass={'photos'} name={'Photos'} component={'PhotosContent'} onClick={() => { }} />
-                <SingleIcon id="resume" icon={resume} uniqueClass={'resume'} name={'Resume'} component={'ResumeContent'} onClick={() => { }} />
-                <SingleIcon id="linkedin" icon={linkedin} uniqueClass={'linkedin'} name={'Linkedin'} component={ExternalWindowLinkedin} onClick={() => { }} />
-                <SingleIcon id="github" icon={github} uniqueClass={'github'} name={'Github'} component={'GithubContent'} onClick={() => { }} />
+                {/* <SingleIcon id="photos" icon={photos} uniqueClass={'photos'} name={'Photos'} component={'PhotosContent'} onClick={() => { }} /> */}
+                <SingleIcon id="resume" icon={resume} uniqueClass={'resume'} name={'Resume'} component={ExternalWindowResume} onClick={() => { }} />
+                <SingleIcon id="LinkedIn" icon={linkedinIcon} uniqueClass={'linkedin'} name={'Linkedin'} component={ExternalWindowLinkedin} onClick={() => { }} />
+                <SingleIcon id="github" icon={github} uniqueClass={'github'} name={'Github'} component={ExternalWindowGithub} onClick={() => { }} />
                 {/* Add encarta */}
             </article>
             {openedApps.map(app => (
@@ -156,7 +158,7 @@ export default function Desktop(props) {
                     onMinimize={() => minimizeApp(app.id)}
                     onMaximize={() => maximizeApp(app.id)}
                 >
-                    <app.component />
+                    <app.component.Component closeApp={app.closeApp} />
                 </Window>
             ))}
             <Bar openedApps={openedApps} toggleMinimizeApp={toggleMinimizeApp} setActiveBar={setActiveBar} activeBar={activeBar} />
