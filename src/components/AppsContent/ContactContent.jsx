@@ -9,7 +9,7 @@ export default function ContactContent(props) {
     
         const formData = new FormData(event.target);
     
-        const response = await fetch('Admin forgot to change the URL', {
+        const response = await fetch('', {
             method: 'POST',
             body: formData,
             headers: {
@@ -37,7 +37,7 @@ export default function ContactContent(props) {
 
     return (
         <article id="contactcontent">
-            <form action="Admin forgot to change the URL" method="POST" onSubmit={handleSubmit}>
+            <form action="" method="POST" onSubmit={handleSubmit}>
                 <button type="submit">Send</button>
                 <div className="formfield">
                     <label htmlFor="to">From:</label>
