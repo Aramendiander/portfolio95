@@ -11,6 +11,7 @@ import ContactContent from './AppsContent/ContactContent';
 import Window from './Window';
 import Bar from './Bar';
 import NotepadContent from './AppsContent/NotepadContent';
+import ExternalWindowLinkedin from './ExternalWindowLinkedin';
 
 export default function Desktop(props) {
     const [activeBar, setActiveBar] = useState(false);
@@ -99,7 +100,6 @@ export default function Desktop(props) {
 
     const SingleIcon = (props) => {
         let timer = 0;
-        let delay = 200;
         let prevent = false;
     
         const handleClick = (e) => {
@@ -142,7 +142,7 @@ export default function Desktop(props) {
                 <SingleIcon id="contact" icon={contact} uniqueClass={'contact'} name={'Contact'} component={ContactContent} onClick={() => { }} />
                 <SingleIcon id="photos" icon={photos} uniqueClass={'photos'} name={'Photos'} component={'PhotosContent'} onClick={() => { }} />
                 <SingleIcon id="resume" icon={resume} uniqueClass={'resume'} name={'Resume'} component={'ResumeContent'} onClick={() => { }} />
-                <SingleIcon id="linkedin" icon={linkedin} uniqueClass={'linkedin'} name={'Linkedin'} component={'LinkedinContent'} onClick={() => { }} />
+                <SingleIcon id="linkedin" icon={linkedin} uniqueClass={'linkedin'} name={'Linkedin'} component={ExternalWindowLinkedin} onClick={() => { }} />
                 <SingleIcon id="github" icon={github} uniqueClass={'github'} name={'Github'} component={'GithubContent'} onClick={() => { }} />
                 {/* Add encarta */}
             </article>
