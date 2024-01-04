@@ -876,6 +876,20 @@ form>* {
 }
 
 
+@media (max-width: 850px) {
+  .window {
+    width: 100dvw !important;
+    height: calc(100dvh - 2.5rem);
+    left: 0 !important;
+    top: 0 !important;
+  
+  }
+
+  #openedstart {
+    width: 60dvw;
+  }
+}
+
 @media (max-height: 650px) {
   #desktopicons {
     grid-template-columns: repeat(2, 1fr);
