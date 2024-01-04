@@ -63,7 +63,7 @@ export default function Bar(props) {
 
     const handleBarIconClick = (appId) => {
         const app = props.openedApps.find(app => app.id === appId);
-        if (appId === props.topAppId) {
+        if (appId === props.appOrder[props.appOrder.length - 1]) {
             props.toggleMinimizeApp(appId);
         } else if (app.minimized) {
             props.toggleMinimizeApp(appId);

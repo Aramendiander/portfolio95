@@ -404,6 +404,7 @@ body,
 
 
 #bar {
+  z-index:95;
   display: flex;
   position: absolute;
   bottom: 0;
@@ -675,7 +676,7 @@ body,
 }
 
 .onTop {
-  z-index: 999 !important;
+  z-index: 90 !important;
 }
 
 .window.contact {
