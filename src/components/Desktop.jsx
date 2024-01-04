@@ -41,6 +41,13 @@ export default function Desktop(props) {
         setOpenedApps(prevApps => prevApps.map(app =>
             app.id === appId ? { ...app, minimized: true } : app
         ));
+
+        setAppOrder(prevOrder => {
+            // Filter out the app with the given appId
+            const filteredOrder = prevOrder.filter(id => id !== appId);
+            // Return the new array with the app at the beginning
+            return [appId, ...filteredOrder];
+        });
     }
 
     const toggleMinimizeApp = (appId) => {
