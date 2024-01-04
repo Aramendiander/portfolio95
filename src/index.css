@@ -399,6 +399,7 @@ body,
   max-width: 100vw;
   background-color: #018181;
   overflow: hidden;
+  margin:0 !important;
 }
 
 
@@ -649,6 +650,7 @@ body,
 
 .window {
   background-color: #B7B7B7;
+  margin: 0px !important;
 }
 
 
@@ -879,12 +881,39 @@ form>* {
 
 
 @media (max-width: 850px) {
-  .window {
-    width: 100dvw !important;
-    height: calc(100dvh - 2.5rem);
-    left: 0 !important;
-    top: 0 !important;
 
+ 
+
+  .window.aboutme {
+    height: calc(100dvh - 2.5rem) !important;
+    width: 98dvw !important;
+    left: 0px !important;
+    top: 0px !important;
+
+  }
+  
+
+  .window.contact {
+    height: calc(99dvh - 2.5rem);
+    width: 98dvw !important;
+    max-height: calc(99dvh - 2.5rem);
+    left: 0px !important;
+    top: 0px !important;
+  }
+
+  .window.notepad {
+    height: calc(99dvh - 2.5rem);
+    width: 98dvw !important;
+    max-height: calc(99dvh - 2.5rem);
+    left: 0px !important;
+    top: 0px !important;
+  }
+
+  .window.resume, .window.linkedin, .window.github {
+    height: 30dvh !important;
+    width: 98dvw !important;
+    top: 0px;
+    left: 0px;
   }
 
   #openedstart {
@@ -892,12 +921,32 @@ form>* {
   }
 
   .baricons {
-    width: 30%;
+    width: 27%;
     overflow: scroll;
-  }
+    flex-grow: 1;
+}
 
   .baricons::-webkit-scrollbar {
     display: none;
+  }
+
+  .separator {
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+  }
+
+  .datecontainer {
+    margin-left: 10px;
+  }
+
+  button {
+    margin: 0 3px;
+    padding: 0 6px;
+  }
+
+  .bariconname {
+    white-space: nowrap;
   }
 
 }
