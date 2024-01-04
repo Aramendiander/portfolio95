@@ -27,11 +27,20 @@ export default function Desktop(props) {
 
 
     const openApp = (app) => {
-        const timestamp = Date.now();
-        setOpenedApps(prevApps => [...prevApps, { ...app, id: timestamp, closeApp: () => closeApp(timestamp) }]);
-        setTopAppId(timestamp); // Set the newly opened app to be on top
-        setAppOrder(prevOrder => [...prevOrder, timestamp]);
-    }
+        const existingApp = openedApps.find(openedApp => openedApp.uniqueClass === app.uniqueClass);
+    
+        if (existingApp) {
+            if (existingApp.minimized) {
+                toggleMinimizeApp(existingApp.id);
+            }
+            bringToFront(existingApp.id);
+        } else {
+            const timestamp = Date.now();
+            setOpenedApps(prevApps => [...prevApps, { ...app, id: timestamp, closeApp: () => closeApp(timestamp) }]);
+            setTopAppId(timestamp); // Set the newly opened app to be on top
+            setAppOrder(prevOrder => [...prevOrder, timestamp]);
+        }
+    };
 
     const closeApp = (appId) => {
         setOpenedApps(prevApps => prevApps.filter(app => app.id !== appId));
