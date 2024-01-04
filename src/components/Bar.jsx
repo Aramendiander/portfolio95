@@ -10,7 +10,6 @@ import ContactContent from './AppsContent/ContactContent';
 
 export default function Bar(props) {
     const barRef = useRef(null);
-    console.log(props)
     const [time, setTime] = useState(new Date());
 
     useEffect(() => {
@@ -64,10 +63,8 @@ export default function Bar(props) {
 
     const handleBarIconClick = (appId) => {
         const app = props.openedApps.find(app => app.id === appId);
-        console.log(app.id)
         if (appId === props.topAppId) {
             props.toggleMinimizeApp(appId);
-            console.log('hola')
         } else if (app.minimized) {
             props.toggleMinimizeApp(appId);
             props.bringToFront(appId);

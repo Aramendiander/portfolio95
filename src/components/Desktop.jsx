@@ -19,6 +19,7 @@ export default function Desktop(props) {
     const [activeBar, setActiveBar] = useState(false);
     const [openedApps, setOpenedApps] = useState([]);
     const [topAppId, setTopAppId] = useState(null);
+    const [appOrder, setAppOrder] = useState([]);
     const [zIndex, setZIndex] = useState(1);
     const desktopRef = useRef(null);
 
@@ -29,7 +30,9 @@ export default function Desktop(props) {
         const timestamp = Date.now();
         setOpenedApps(prevApps => [...prevApps, { ...app, id: timestamp, closeApp: () => closeApp(timestamp) }]);
         setTopAppId(timestamp); // Set the newly opened app to be on top
+        setAppOrder(prevOrder => [...prevOrder, timestamp]);
     }
+    console.log(appOrder)
 
     const closeApp = (appId) => {
         setOpenedApps(prevApps => prevApps.filter(app => app.id !== appId));
@@ -61,6 +64,12 @@ export default function Desktop(props) {
 
     const bringToFront = (appId) => {
         setTopAppId(appId);
+        setAppOrder(prevOrder => {
+            // Filter out the app with the given appId
+            const filteredOrder = prevOrder.filter(id => id !== appId);
+            // Return the new array with the app at the end
+            return [...filteredOrder, appId];
+        });
     };
 
 
@@ -178,7 +187,7 @@ export default function Desktop(props) {
                     <app.component.Component closeApp={app.closeApp} />
                 </Window>
             ))}
-            <Bar openedApps={openedApps} toggleMinimizeApp={toggleMinimizeApp} setActiveBar={setActiveBar} activeBar={activeBar} openApp={openApp} bringToFront={bringToFront} topAppId={topAppId} />
+            <Bar openedApps={openedApps} toggleMinimizeApp={toggleMinimizeApp} setActiveBar={setActiveBar} activeBar={activeBar} openApp={openApp} bringToFront={bringToFront} topAppId={topAppId} appOrder={appOrder} />
         </>
     )
 }
