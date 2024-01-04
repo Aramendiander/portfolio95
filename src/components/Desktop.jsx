@@ -18,6 +18,8 @@ import ExternalWindowResume from './AppsContent/ExternalWindowResume';
 export default function Desktop(props) {
     const [activeBar, setActiveBar] = useState(false);
     const [openedApps, setOpenedApps] = useState([]);
+    const [topAppId, setTopAppId] = useState(null);
+    const [zIndex, setZIndex] = useState(1);
     const desktopRef = useRef(null);
 
     let zindex = 1;
@@ -26,6 +28,7 @@ export default function Desktop(props) {
     const openApp = (app) => {
         const timestamp = Date.now();
         setOpenedApps(prevApps => [...prevApps, { ...app, id: timestamp, closeApp: () => closeApp(timestamp) }]);
+        setTopAppId(timestamp); // Set the newly opened app to be on top
     }
 
     const closeApp = (appId) => {
@@ -56,7 +59,10 @@ export default function Desktop(props) {
         ));
     }
 
-  
+    const bringToFront = (appId) => {
+        setTopAppId(appId);
+    };
+
 
 
     useEffect(() => {
@@ -161,11 +167,13 @@ export default function Desktop(props) {
                     key={app.id}
                     name={app.name}
                     icon={app.icon}
-                    className={`${app.minimized ? 'minimized' : ''} ${app.maximized ? 'maximized' : ''}`}
+                    className={`${app.minimized ? 'minimized' : ''} ${app.maximized ? 'maximized' : ''} ${app.id === topAppId ? 'onTop' : ''}`}
                     uniqueClass={app.uniqueClass}
                     onClose={() => closeApp(app.id)}
                     onMinimize={() => minimizeApp(app.id)}
                     onMaximize={() => toggleMaximizeApp(app.id)}
+                    onMouseDown={() => bringToFront(app.id)}
+                    style={{ zIndex: app.zIndex }}
                 >
                     <app.component.Component closeApp={app.closeApp} />
                 </Window>

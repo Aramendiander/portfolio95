@@ -674,6 +674,10 @@ body,
   top: 0 !important;
 }
 
+.onTop {
+  z-index: 999 !important;
+}
+
 .window.contact {
   position: absolute;
   left: 25%;

@@ -62,6 +62,19 @@ export default function Bar(props) {
     };
 
 
+    const handleBarIconClick = (appId) => {
+        const app = props.openedApps.find(app => app.id === appId);
+        const maxZIndex = Math.max(...props.openedApps.map(app => app.zIndex));
+        if (app.minimized) {
+            props.toggleMinimizeApp(appId);
+        } else if (app.zIndex < maxZIndex) {
+            props.bringToFront(appId);
+        } else {
+            props.toggleMinimizeApp(appId);
+        }
+    };
+
+
     return (
         <section id="bottombar" ref={barRef}>
             {props.activeBar && (
@@ -80,7 +93,7 @@ export default function Bar(props) {
                 <div className="separator"></div>
                 <div className="baricons">
                     {props.openedApps.map((app) => (
-                        <button className="baricon" key={app.id} onClick={() => props.toggleMinimizeApp(app.id)}>
+                        <button className="baricon" key={app.id} onClick={() => handleBarIconClick(app.id)}>
                             <img src={app.icon} className="bariconicon" />
                             <p className="bariconname">{app.name}</p>
                         </button>
