@@ -32,7 +32,6 @@ export default function Desktop(props) {
         setTopAppId(timestamp); // Set the newly opened app to be on top
         setAppOrder(prevOrder => [...prevOrder, timestamp]);
     }
-    console.log(appOrder)
 
     const closeApp = (appId) => {
         setOpenedApps(prevApps => prevApps.filter(app => app.id !== appId));
