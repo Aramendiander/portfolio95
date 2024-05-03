@@ -14,6 +14,7 @@ import NotepadContent from './AppsContent/NotepadContent';
 import ExternalWindowLinkedin from './AppsContent/ExternalWindowLinkedin';
 import ExternalWindowGithub from './AppsContent/ExternalWindowGithub';
 import ExternalWindowResume from './AppsContent/ExternalWindowResume';
+import DoomContent from './AppsContent/DoomContent';
 
 export default function Desktop(props) {
     const [activeBar, setActiveBar] = useState(false);
@@ -191,6 +192,7 @@ export default function Desktop(props) {
                 <SingleIcon id="resume" icon={resume} uniqueClass={'resume'} name={'Resume'} component={ExternalWindowResume} onClick={() => { }} />
                 <SingleIcon id="LinkedIn" icon={linkedinIcon} uniqueClass={'linkedin'} name={'Linkedin'} component={ExternalWindowLinkedin} onClick={() => { }} />
                 <SingleIcon id="github" icon={github} uniqueClass={'github'} name={'Github'} component={ExternalWindowGithub} onClick={() => { }} />
+                <SingleIcon id="doom" icon={github} uniqueClass={'doom'} name={'Doom'} component={DoomContent} onClick={() => { }} />
                 {/* Add encarta */}
             </article>
             {openedApps.map(app => (
