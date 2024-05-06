@@ -885,11 +885,14 @@ form>* {
 }
 
 .projects {
-  width: 70dvw;
+  width: 100dvw;
+  position: absolute;
 }
 
 .projects .content {
   padding: 1rem;
+  overflow: auto;
+  height: 80dvh;
 }
 
 .projectscontainer h2 {
@@ -924,6 +927,124 @@ form>* {
   display:flex;
   justify-content: center;
 }
+
+.moodupWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.tasawebimg, .geogameimg {
+  padding: 0 15%;
+  margin-bottom: 2rem;
+}
+
+.moodupWrapper img:first-child {
+  width: 25%;
+}
+
+.moodupWrapper img:last-child {
+  width: 75%; 
+}
+
+#startupscreen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background-color:black;
+  z-index: 999;
+  color: white;
+  font-size: 2rem;
+  padding: 5% 0 0 5%;
+}
+
+.biostop {
+  display: flex;
+  flex-direction: row;
+}
+
+#biostop div {
+  width: 75%;
+}
+
+#biostop img {
+  width: 25%;
+}
+
+.energystar {
+  width: 20%;
+}
+
+.biostop {
+  display:flex;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+}
+
+.bios-top-left-wrapper {
+  display:flex;
+  width: 80%;
+
+}
+
+#stepone .biosicon {
+  height: 6rem;
+  margin-right: 1rem;
+}
+
+.fourth {
+  margin-top: 5rem;
+}
+
+.first, .second, .third, .fourth, .fifth, .sixth, .seventh, .eigth {
+  animation-name: show;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+}
+
+#winstartup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background-image: url("/clouds.png");
+}
+
+img#w95logo {
+  width: 50%;
+  position: absolute;
+  left: 25%;
+  top: 25%;
+}
+
+.fourth.steptwo, .fifth.steptwo, .sixth.steptwo, .seventh.steptwo {
+  margin-bottom: 3dvh;
+  margin-top: 3dvh;
+}
+
+.second.steptwo {
+  margin-left: 3dvw;
+  margin-bottom: 3dvh;
+}
+
+.third.steptwo p:last-child {
+  margin-left: 10dvw;
+}
+
+.fourth.steptwo {
+  margin-top: 5dvh;
+}
+
+
+
+
 
 @media (max-width: 850px) {
 
@@ -1002,8 +1123,24 @@ form>* {
   }
 }
 
+@media (max-width: 600px) {
+  #startupscreen {
+    font-size: 1.5rem;
+  }
+
+  #stepone .biosicon {
+    height: 4rem;
+  }
+}
+
 @media (max-height: 400px) {
   #desktopicons {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  #startupscreen {
+    font-size: 1.2rem;
   }
 }

@@ -13,6 +13,7 @@
     "emulators-ui": "^0.73.9",
     "js-dos": "^7.5.0",
     "react": "^18.2.0",
+    "react-countup": "^6.5.3",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6"
   },

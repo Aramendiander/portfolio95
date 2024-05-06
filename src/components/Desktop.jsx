@@ -18,6 +18,7 @@ import ExternalWindowGithub from './AppsContent/ExternalWindowGithub';
 import ExternalWindowResume from './AppsContent/ExternalWindowResume';
 import DoomContent from './AppsContent/DoomContent';
 import ProjectsContent from './AppsContent/ProjectsContent';
+import startup from '../assets/startup.mp3';
 
 export default function Desktop(props) {
     const [activeBar, setActiveBar] = useState(false);
@@ -26,13 +27,14 @@ export default function Desktop(props) {
     const [appOrder, setAppOrder] = useState([]);
     const [zIndex, setZIndex] = useState(1);
     const desktopRef = useRef(null);
+    const audioRef = useRef();
 
     let zindex = 1;
 
 
     const openApp = (app) => {
         const existingApp = openedApps.find(openedApp => openedApp.uniqueClass === app.uniqueClass);
-    
+
         if (existingApp) {
             if (existingApp.minimized) {
                 toggleMinimizeApp(existingApp.id);
@@ -182,10 +184,15 @@ export default function Desktop(props) {
     };
 
 
-
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = 0.1 ;
+        }
+    }, []);
 
     return (
         <>
+            <audio id='startupSound' src={startup} autoPlay ref={audioRef} />
             <article id="desktopicons" ref={desktopRef}>
 
                 <SingleIcon id="aboutme" icon={aboutme} uniqueClass={'aboutme'} name={'About me'} component={AboutMeContent} onClick={() => { }} />
