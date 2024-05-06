@@ -4,6 +4,7 @@ import contact from '../assets/contact.png';
 import photos from '../assets/photos.png';
 import resume from '../assets/resume.png';
 import doom from '../assets/doom.png';
+import projects from "../assets/projects.png"
 import linkedinIcon from '../assets/linkedin.png';
 import github from '../assets/github.png';
 import { useEffect, useState, useRef } from 'react';
@@ -16,6 +17,7 @@ import ExternalWindowLinkedin from './AppsContent/ExternalWindowLinkedin';
 import ExternalWindowGithub from './AppsContent/ExternalWindowGithub';
 import ExternalWindowResume from './AppsContent/ExternalWindowResume';
 import DoomContent from './AppsContent/DoomContent';
+import ProjectsContent from './AppsContent/ProjectsContent';
 
 export default function Desktop(props) {
     const [activeBar, setActiveBar] = useState(false);
@@ -187,6 +189,7 @@ export default function Desktop(props) {
             <article id="desktopicons" ref={desktopRef}>
 
                 <SingleIcon id="aboutme" icon={aboutme} uniqueClass={'aboutme'} name={'About me'} component={AboutMeContent} onClick={() => { }} />
+                <SingleIcon id="projects" icon={projects} uniqueClass={'projects'} name={'My projects'} component={ProjectsContent} onClick={() => { }} />
                 <SingleIcon id="notepad" icon={notepad} uniqueClass={'notepad'} name={'Notepad'} component={NotepadContent} onClick={() => { }} />
                 <SingleIcon id="contact" icon={contact} uniqueClass={'contact'} name={'Contact'} component={ContactContent} onClick={() => { }} />
                 {/* <SingleIcon id="photos" icon={photos} uniqueClass={'photos'} name={'Photos'} component={'PhotosContent'} onClick={() => { }} /> */}
