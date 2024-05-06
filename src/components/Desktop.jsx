@@ -3,6 +3,7 @@ import notepad from '../assets/notepad.png';
 import contact from '../assets/contact.png';
 import photos from '../assets/photos.png';
 import resume from '../assets/resume.png';
+import doom from '../assets/doom.png';
 import linkedinIcon from '../assets/linkedin.png';
 import github from '../assets/github.png';
 import { useEffect, useState, useRef } from 'react';
@@ -192,7 +193,7 @@ export default function Desktop(props) {
                 <SingleIcon id="resume" icon={resume} uniqueClass={'resume'} name={'Resume'} component={ExternalWindowResume} onClick={() => { }} />
                 <SingleIcon id="LinkedIn" icon={linkedinIcon} uniqueClass={'linkedin'} name={'Linkedin'} component={ExternalWindowLinkedin} onClick={() => { }} />
                 <SingleIcon id="github" icon={github} uniqueClass={'github'} name={'Github'} component={ExternalWindowGithub} onClick={() => { }} />
-                <SingleIcon id="doom" icon={github} uniqueClass={'doom'} name={'Doom'} component={DoomContent} onClick={() => { }} />
+                <SingleIcon id="doom" icon={doom} uniqueClass={'doom'} name={'Doom'} component={DoomContent} onClick={() => { }} />
                 {/* Add encarta */}
             </article>
             {openedApps.map(app => (

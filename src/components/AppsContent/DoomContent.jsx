@@ -1,26 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
-function DoomComponent() {
-    const doomRef = useRef(null);
+import DosPlayer from "../DosPlayer";   
 
-    useEffect(() => {
-        if (doomRef.current) {
-            const ciPromise = window.Dos(doomRef.current, {
-                wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
-                onprogress: (stage, total, loaded) => {
-                    console.log(stage, total, loaded);
-                },
-            });
-
-            ciPromise.then((ci) => {
-                ci.fs.extract("/src/assets/doom-box.zip").then(() => {
-                    ci.main(["-c", "DOOMWEB.bat"]);
-                });
-            });
-        }
-    }, []);
-
-    return <canvas ref={doomRef}></canvas>;
+function App() {
+  return (
+    <div className="App" style={{ width: "640px", height: "400px" }}>
+        <DosPlayer bundleUrl="doom.jsdos" />
+    </div>
+  );
 }
 
-export default DoomComponent;
+export default App;
