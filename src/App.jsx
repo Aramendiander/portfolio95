@@ -80,7 +80,7 @@ function App() {
             </div>
             <p className='first'>ASUS A8N-SLI Premium ACPI BIOS Revision 1023-002</p>
             <p className='second'>Main Processor : AMD Athlon(tm) 64 Processor 7000+</p>
-            <p className='third'>Memory Testing : <CountUp start="0" end="131072" duration="3" suffix="K" delay="3" /></p>
+            <p className='third'>Memory Testing : <CountUp start="0" end="131072" duration="2" suffix="K" delay="2" /></p>
             <p className='fourth'>Chipset Model : nForce 9</p>
             <p className='fifth'>Primary IDE Master     : WD2500J-22HC  6.00.100 </p>
             <p className='sixth'>Primary IDE Slave      : Media Error</p>
