@@ -958,6 +958,63 @@ form>* {
   width: 75%; 
 }
 
+#computer {
+  position: absolute;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background-color:black;
+  z-index: 999;
+  color: white;
+  font-size: 2rem;
+  background-image: url("/computer.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.clicktostart {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -7rem;
+  font-size: 1.5rem;
+  border: 5px solid white;
+  padding: 1.5rem;
+}
+
+.clicktostart p:last-child {
+  margin-top: 1rem;
+  border: 2px solid white;
+  padding: 0.5rem 2rem;
+}
+
+.animate {
+  animation-name: zoomIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(.68,-0.6,0,1.09)
+
+}
+
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(6);
+  }
+
+}
+
+
 #startupscreen {
   position: absolute;
   left: 0;
@@ -1054,7 +1111,6 @@ img#w95logo {
 
 
 
-
 @media (max-width: 850px) {
 
  
@@ -1130,6 +1186,21 @@ img#w95logo {
   #desktopicons {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  
+
+}
+
+@media(max-width: 650px) {
+  #computer {
+    background-size: 100%;
+  }
+
+  .clicktostart {
+    font-size: 1rem;
+    padding: 1rem;  
+  }
+
 }
 
 @media (max-width: 600px) {

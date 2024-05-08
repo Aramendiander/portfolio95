@@ -5,13 +5,16 @@ import energyStar from './assets/energy-star.png';
 import biosIcon from './assets/bios-icon.png';
 import w95logo from "./assets/w95logo.png";
 import startupsound from "./assets/startup.mp3";
+import computer from "./assets/computer.png";
 import CountUp from 'react-countup';
 
 function App() {
   const [activeBar, setActiveBar] = useState(false);
-  const [startingUp, setStartingUp] = useState("stepone");
+  const [startingUp, setStartingUp] = useState("stepzero");
+  const [animate, setAnimate] = useState(false);
 
-   useEffect(() => {
+
+  useEffect(() => {
     if (startingUp === 'stepone') {
       const classes = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eigth'];
       let accumulatedDelay = 0;
@@ -58,14 +61,34 @@ function App() {
       setTimeout(() => {
         setStartingUp('desktop');
       }, 2000);
-      
+
     }
   }, [startingUp]);
+
+  const startup = () => {
+    document.querySelector('#root').style.backgroundColor = 'black';
+    setAnimate(true);
+    setTimeout(() => {
+      setStartingUp('stepone');
+      document.querySelector('#root').style.backgroundColor = '#018181';
+    }, 1000);
+  }
 
 
   return (
     <>
-      {startingUp === 'stepone' ? (
+      {startingUp === 'stepzero' ? (
+        <div id='computer' className={animate ? 'animate' : ''}>
+          {animate ? null : (
+            <>
+              <div className="clicktostart">
+                <p>Ander Aramendi - Windows 95</p>
+                <p onClick={startup}>Start</p>
+              </div>
+            </>
+          )}
+        </div>
+      ) : startingUp === 'stepone' ? (
         <div id="startupscreen">
           <div id="stepone">
             <div className='biostop'>
