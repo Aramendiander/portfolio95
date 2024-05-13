@@ -15,6 +15,11 @@ function App() {
 
 
   useEffect(() => {
+    const img = new Image();
+    img.src = w95logo;
+  }, []);
+
+  useEffect(() => {
     if (startingUp === 'stepone') {
       const classes = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eigth'];
       let accumulatedDelay = 0;
@@ -83,7 +88,7 @@ function App() {
             <>
               <div className="clicktostart">
                 <p>Ander Aramendi - Windows 95</p>
-                <p onClick={startup}>Start</p>
+                <p onClick={startup} className='start-button'>Start</p>
               </div>
             </>
           )}

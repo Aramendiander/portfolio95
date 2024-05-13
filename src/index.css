@@ -1081,13 +1081,13 @@ form>* {
   height: 100dvh;
   background-image: url("/clouds.png");
   background-size: cover;
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
 
 img#w95logo {
-  width: 50%;
-  position: absolute;
-  left: 25%;
-  top: 25%;
+  width: 40%;
 }
 
 .fourth.steptwo, .fifth.steptwo, .sixth.steptwo, .seventh.steptwo {
@@ -1108,6 +1108,9 @@ img#w95logo {
   margin-top: 5dvh;
 }
 
+.start-button {
+  cursor: pointer;
+}
 
 
 
@@ -1200,6 +1203,10 @@ img#w95logo {
     font-size: 1rem;
     padding: 1rem;  
   }
+
+  img#w95logo {
+    width: 65%;
+}
 
 }
 
