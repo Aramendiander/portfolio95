@@ -7,6 +7,7 @@ import doom from '../assets/doom.png';
 import projects from "../assets/projects.png"
 import linkedinIcon from '../assets/linkedin.png';
 import github from '../assets/github.png';
+import paint from '../assets/paint.png';
 import { useEffect, useState, useRef } from 'react';
 import AboutMeContent from './AppsContent/AboutMeContent';
 import ContactContent from './AppsContent/ContactContent';
@@ -18,6 +19,7 @@ import ExternalWindowGithub from './AppsContent/ExternalWindowGithub';
 import ExternalWindowResume from './AppsContent/ExternalWindowResume';
 import DoomContent from './AppsContent/DoomContent';
 import ProjectsContent from './AppsContent/ProjectsContent';
+import PaintContent from './AppsContent/NotepadContent copy';
 
 export default function Desktop(props) {
     const [activeBar, setActiveBar] = useState(false);
@@ -207,6 +209,7 @@ export default function Desktop(props) {
                 <SingleIcon id="projects" icon={projects} uniqueClass={'projects'} name={'My projects'} component={ProjectsContent} onClick={() => { }} />
                 <SingleIcon id="notepad" icon={notepad} uniqueClass={'notepad'} name={'Notepad'} component={NotepadContent} onClick={() => { }} />
                 <SingleIcon id="contact" icon={contact} uniqueClass={'contact'} name={'Contact'} component={ContactContent} onClick={() => { }} />
+                <SingleIcon id="paint" icon={paint} uniqueClass={'paint'} name={'Paint'} component={PaintContent} onClick={() => { }} />
                 {/* <SingleIcon id="photos" icon={photos} uniqueClass={'photos'} name={'Photos'} component={'PhotosContent'} onClick={() => { }} /> */}
                 <SingleIcon id="resume" icon={resume} uniqueClass={'resume'} name={'Resume'} component={ExternalWindowResume} onClick={() => { }} />
                 <SingleIcon id="LinkedIn" icon={linkedinIcon} uniqueClass={'linkedin'} name={'Linkedin'} component={ExternalWindowLinkedin} onClick={() => { }} />

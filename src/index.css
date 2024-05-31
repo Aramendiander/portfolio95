@@ -1124,6 +1124,15 @@ img#w95logo {
 }
 
 
+.paint {
+  width: 60dvw;
+}
+
+article#paintcontent {
+  height: 80dvh;
+}
+
+
 
 
 
@@ -1226,6 +1235,21 @@ img#w95logo {
   .twobuttonwrapper{
     padding: 0;
   }
+
+  .paint {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100dvw;
+    height: calc(100dvh - 2.5rem);
+
+  }
+
+  article#paintcontent {
+    height: calc(100dvh - 4rem);
+  }
+
+
 }
 
 @media (max-width: 600px) {
