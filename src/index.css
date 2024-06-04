@@ -676,6 +676,7 @@ body,
   height: calc(100dvh - 2.5rem) !important;
   left: 0 !important;
   top: 0 !important;
+  transform: translate(0px) !important;
 }
 
 .onTop {
@@ -1125,6 +1126,7 @@ img#w95logo {
 
 
 .paint {
+  position: absolute;
   width: 60dvw;
 }
 
@@ -1132,6 +1134,9 @@ article#paintcontent {
   height: 80dvh;
 }
 
+.maximized article#paintcontent {
+  height: calc(100dvh - 2.5rem - 27px);
+}
 
 
 
@@ -1232,13 +1237,13 @@ article#paintcontent {
     width: 65%;
   }
 
-  .twobuttonwrapper{
+  .twobuttonwrapper {
     padding: 0;
   }
 
   .paint {
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     width: 100dvw;
     height: calc(100dvh - 2.5rem);
